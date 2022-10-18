@@ -44,7 +44,7 @@ public class Vehicle {
         return this.speed;
     }
 
-    public void setAcceleration(int acceleration) {
-        this.acceleration = acceleration;
+    public void setSpeed(float speed) {
+        this.speed = speed;
     }
 }

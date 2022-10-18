@@ -12,16 +12,16 @@ public class Car extends Vehicle {
         this.car_sign = car_sign;
     }
 
-    public void setAlarm(boolean alarm) {
+    public void setAlarm(boolean alarm)   {
         this.alarm = alarm;
     }
 
-    public void setTurned_on(boolean turned_on) {
+    public void setTurned_on(boolean turned_on)  {
         this.turned_on = turned_on;
         if(turned_on) {
-            setAcceleration(1);
+            setSpeed(1);
         }else {
-            setAcceleration(0);
+            setSpeed(0);
         }
     }
     public boolean isAlarm() {
@@ -36,6 +36,19 @@ public class Car extends Vehicle {
         return car_sign;
     }
     public void accelerate(float time){
-        float speed= time*getAcceleration();
+        if(time*getAcceleration()<getMax_speed()) {
+            setSpeed(time * getAcceleration());
+        }else {
+            System.out.println("you wanted to accelerate for too long, you are at max speed");
+            setSpeed(getMax_speed());
+        }
+    }
+    public void brake(float time){
+        if(getSpeed()-(time*getBrake_power())<=0) {
+            System.out.println("too much time to brake, your speed is now zero and the car is off ");
+            setSpeed(0);
+        }else {
+            setSpeed(getSpeed() - (time * getBrake_power()));
+        }
     }
 }
